@@ -4,8 +4,8 @@ function processLinks(e) {
 		for (var linkIndex = 0; linkIndex < links.length; linkIndex++) {
 		  var link = links[linkIndex];
 		  processLink(link);
-		}	
-	}		
+		}
+	}
 }
 
 function processLink(link) {
@@ -51,7 +51,16 @@ observerCallback = function(mutations) {
 var observer = new MutationObserver(observerCallback);
 observer.observe(document.documentElement, {
     childList: true,
-    subtree: true            
+    subtree: true
 });
 
 processLinks(document);
+
+chrome.storage.sync.get("mark_style", function(result){
+    var sheet = document.createElement('style');
+    var defaultStyle = "background-color: gray;\nopacity: 0.5;";
+    var rule = "a.marked_link {" + (result.mark_style || defaultStyle) + "}";
+console.log(rule);
+    sheet.innerHTML = rule;
+    document.body.appendChild(sheet);
+});

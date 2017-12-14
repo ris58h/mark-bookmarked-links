@@ -6,15 +6,18 @@
   "version": "1.0",
 
   "permissions": [
-    "bookmarks"
+    "bookmarks",
+    "storage"
   ],
+  "options_ui": {
+    "page": "options.html"
+  },
   "background": {
     "scripts": ["background.js"]
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "css": ["content.css"],
       "js": ["content.js"]
     }
   ]
