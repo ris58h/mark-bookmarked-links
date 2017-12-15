@@ -59,8 +59,11 @@ processLinks(document);
 chrome.storage.sync.get("mark_style", function(result){
     var sheet = document.createElement('style');
     var defaultStyle = "background-color: gray;\nopacity: 0.5;";
-    var rule = "a.marked_link {" + (result.mark_style || defaultStyle) + "}";
-console.log(rule);
+    var style = defaultStyle;
+    if (result != null && result.mark_style != null) {
+        style = result.mark_style;
+    }
+    var rule = "a.marked_link {" + style + "}";
     sheet.innerHTML = rule;
     document.body.appendChild(sheet);
 });

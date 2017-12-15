@@ -5,6 +5,12 @@
   "description": "mark-bookmarked-links",
   "version": "1.0",
 
+  "applications": {
+    "gecko": {
+      "id": "mark-bookmarked-links@ris58h"
+    }
+  },
+
   "permissions": [
     "bookmarks",
     "storage"
